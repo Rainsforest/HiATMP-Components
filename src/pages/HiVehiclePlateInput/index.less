@@ -1,0 +1,114 @@
+.normal {
+  width: 14em;
+
+  .plateGroup {
+    display: inline-block;
+    width: 100%;
+    text-align: start;
+    vertical-align: top;
+  }
+
+  .plateWrapper {
+    position: relative;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    color: rgba(0, 0, 0, 0.65);
+    font-size: 14px;
+    line-height: 1.5;
+    display: table;
+    border-spacing: 0;
+    border-collapse: separate;
+  }
+
+  .plateNumInput {
+    position: relative;
+    display: table-cell;
+    float: left;
+    text-transform: uppercase;
+    box-sizing: border-box;
+    margin: 0;
+    width: 100%;
+    height: 32px;
+    padding: 4px 11px;
+    color: rgba(0, 0, 0, 0.65);
+    font-size: 14px;
+    line-height: 1.5;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #d9d9d9;
+    border-radius: 4px 0 0 4px;
+    transition: all 0.3s;
+  }
+
+  .plateNumInput:focus {
+    z-index: 1;
+    border-color: #40a9ff;
+    border-right-width: 1px !important;
+    outline: 0;
+    box-shadow: 0 0 0 2px rgba(24, 144, 255, 0.2);
+  }
+
+  .plateSelectBtn {
+    cursor: pointer;
+    position: relative;
+    padding: 0 3px;
+    color: rgba(0, 0, 0, 0.65);
+    font-weight: normal;
+    font-size: 14px;
+    text-align: center;
+    background-color: #fafafa;
+    border: 1px solid #d9d9d9;
+    border-left: 0;
+    border-radius: 0 4px 4px 0;
+    transition: all .3s;
+    width: 1px;
+    white-space: nowrap;
+    vertical-align: middle;
+    display: table-cell;
+
+    :global {
+      .anticon {
+        vertical-align: middle;
+      }
+    }
+  }
+
+  .plateSelectPanelShow {
+    display: block;
+  }
+
+  .plateSelectPanelHide {
+    display: none;
+  }
+
+  .plateSelectPanel {
+    width: 15em;
+
+    td {
+      cursor: pointer;
+      text-align: center;
+    }
+
+    td:hover {
+      color: #ff9900;
+    }
+
+    .sf1 {
+      background-color: #99ccff;
+    }
+
+    .sf2 {
+      background-color: #ccccff;
+    }
+
+    .sfd {
+      background-color: #1E90FF;
+    }
+
+    .sfh {
+      background-color: #f0e45e;
+    }
+  }
+}
