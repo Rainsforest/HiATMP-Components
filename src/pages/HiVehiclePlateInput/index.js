@@ -14,7 +14,7 @@ const reg2 = new RegExp(/[警学挂使领港澳台]/);
 
 /**
  *
- * @Author yangbingbing
+ * @Author Abing
  * @Date 2019-11-06
  **/
 class index extends React.Component {
