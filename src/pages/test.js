@@ -2,6 +2,7 @@ import React from 'react';
 import { Form, Button } from 'antd';
 import HiVehiclePlateInput from './HiVehiclePlateInput';
 import HiAuthWrapper from './HiAuthWrapper';
+import HiImage from './HiImage';
 import { fetch } from 'dva';
 
 /**
@@ -38,6 +39,9 @@ class test extends React.Component {
         <Button onClick={() => {
           console.log(form.getFieldsValue());
         }}>取值</Button>
+        <div>
+          <HiImage src="https://img-blog.csdnimg.cn/20191216172544126.png"/>
+        </div>
       </div>
     );
   }
