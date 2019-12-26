@@ -3,6 +3,7 @@ import { Form, Button } from 'antd';
 import HiVehiclePlateInput from './HiVehiclePlateInput';
 import HiAuthWrapper from './HiAuthWrapper';
 import HiImage from './HiImage';
+import HiCross from './HiCross';
 import { fetch } from 'dva';
 
 /**
@@ -41,6 +42,9 @@ class test extends React.Component {
         }}>取值</Button>
         <div>
           <HiImage src="https://img-blog.csdnimg.cn/20191216172544126.png"/>
+        </div>
+        <div>
+          <HiCross width={30} crossLineThickness={6}/>
         </div>
       </div>
     );

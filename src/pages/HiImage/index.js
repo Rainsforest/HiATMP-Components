@@ -1,9 +1,9 @@
 import React from 'react';
-import { Icon } from 'antd';
-import CloseImg from '../../assets/close.svg';
+import styles from './index.less';
+import HiCross from '../HiCross';
 
 /**
- *
+ * 图片放大移动
  * @Author Abing
  * @Date 2019-12-24
  **/
@@ -62,6 +62,7 @@ export default class index extends React.Component {
    * 按下鼠标键改变光标样式
    */
   handleMouseDown(e) {
+    e.stopPropagation();
     this.setState({ cursor: 'move', _hiImageClientX: e.clientX, _hiImageClientY: e.clientY });
   }
 
@@ -104,7 +105,8 @@ export default class index extends React.Component {
   /**
    * 弹起鼠标键还原光标样式
    */
-  handleMouseUp() {
+  handleMouseUp(e) {
+    e.stopPropagation();
     this.setState({ cursor: 'auto' });
   }
 
@@ -124,59 +126,45 @@ export default class index extends React.Component {
     this.setState({ scale: 1.0, translateX: 0, translateY: 0, cursor: 'auto' });
   }
 
+  /**
+   * 关闭全屏
+   */
+  handleCloseFussScreen() {
+    this.setState({
+      fullScreen: false,
+      fullScreenScale: 1.0,
+      fullScreenTranslateX: 0,
+      fullScreenTranslateY: 0,
+    });
+  }
+
   render() {
     const { src, className } = this.props;
     const { scale, translateX, translateY, cursor, fullScreen, fullScreenScale, fullScreenTranslateX, fullScreenTranslateY } = this.state;
-
-    const style = {
+    const imgStyle = {
       transform: `scale(${scale})translate(${translateX}px,${translateY}px)`,
       cursor,
-      margin: 'auto',
     };
     const fullScreenImgStyle = {
       transform: `scale(${fullScreenScale})translate(${fullScreenTranslateX}px,${fullScreenTranslateY}px)`,
       cursor,
-      margin: 'auto',
-      height: '100%',
     };
-    const fullScreenStyle = {
-      top: 0,
-      left: 0,
-      position: 'fixed',
-      zIndex: 999999,
-      width: '100%',
-      height: '100%',
-      maxWidth: '100%',
-      maxHeight: '100%',
-      backgroundColor: 'rgba(170,170,170,0.6)',
-      overflow: 'hidden',
-    };
-    const cstyle = fullScreen ? fullScreenStyle : { overflow: 'hidden' };
-    const istyle = fullScreen ? fullScreenImgStyle : style;
+    const istyle = fullScreen ? fullScreenImgStyle : imgStyle;
     return (
-      <div className={className} style={cstyle}
-           onMouseMove={this.handleMouseMove.bind(this)}
-           onDoubleClick={this.handleReset.bind(this)}>
-        <img src={src} style={istyle} draggable='false' alt=''
+      <div
+        className={`${styles.hiImage_wrapper} ${fullScreen ? styles.hiImage_wrapper_fullScreen : ''} ${!!className ? className : ''}`}
+        onMouseMove={this.handleMouseMove.bind(this)}
+        onClick={this.handleReset.bind(this)}>
+        <img src={src} className={`${fullScreen ? styles.img_fullScreen : styles.img}`}
+             style={istyle} draggable='false' alt=''
              onWheel={this.handleWheel.bind(this)}
              onMouseDown={this.handleMouseDown.bind(this)}
              onMouseUp={this.handleMouseUp.bind(this)}
+             onClick={e => e.stopPropagation()}
              onDoubleClick={this.handleDbClick.bind(this)}/>
-        <div style={{
-          position: 'absolute',
-          top: 0,
-          right: 0,
-          width: '50px',
-          height: '50px',
-          display: `${fullScreen ? 'flex' : 'none'}`,
-          cursor: 'pointer',
-        }} onClick={() => this.setState({
-          fullScreen: false,
-          fullScreenScale: 1.0,
-          fullScreenTranslateX: 0,
-          fullScreenTranslateY: 0,
-        })}>
-          <Icon component={() => <CloseImg/>} style={{ margin: 'auto' }}/>
+        <div className={`${styles.closeBtn} ${fullScreen ? styles.closeBtn_show : ''}`}
+             onClick={this.handleCloseFussScreen.bind(this)}>
+          <HiCross width={32} crossLineThickness={6} crossLineColor="rgba(204,204,204,1)"/>
         </div>
       </div>
     );
